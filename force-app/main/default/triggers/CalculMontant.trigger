@@ -1,5 +1,6 @@
-trigger CalculMontant on Order (before update) {
-	
-	Order newOrder= trigger.new[0];
-	newOrder.NetAmount__c = newOrder.TotalAmount - newOrder.ShipmentCost__c;
+trigger CalculMontant on Order (before insert, before update) {
+    for (Order order : Trigger.new) {
+        // Calcul du NetAmount via la classe helper
+        OrderHelper.calculateNetAmount(order);
+    }
 }
