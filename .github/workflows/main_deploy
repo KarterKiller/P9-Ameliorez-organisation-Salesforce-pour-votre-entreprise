@@ -28,17 +28,40 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Install SFDX CLI and sfdx-git-delta plugin # Ce package va vous permettre de faire un delta entre votre branche et la branch ciblé. Voici la documentation : https://github.com/scolladon/sfdx-git-delta
+      
+  
+          
+
+      - name: Install SFDX CLI and sfdx-git-delta plugin
         run: |
-          npm install -g @salesforce/cli@latest
-          echo "y" | npm install sfdx-git-delta@3.3.0 -g
+          npm install -g sfdx-cli@latest
+          echo "y" | npm install  -g sfdx-git-delta@latest
 
-      - name: 'Authentification Salesforce' # Vous devez avoir une connexion avec Salesforce pour pouvoir deployer le code à la dernière étape.
-        run:  # A faire
+      - name: Create JWT Key File
+        run: |
+          echo "${{ secrets.JWT_KEYFILE }}" | tr -d '\r' > server.key
+          chmod 600 server.key
 
-      - name: 'Generate metadata delta pull request'  # Utilisez le plug-in sfdx-git-delta pour effectuer un delta, generer le package xml dans un fichier temporaire ex : .temp
-        run:  # A faire
+      - name: 'Authentification Salesforce'
+        run: |
+          sfdx force:auth:jwt:grant \
+          --clientid ${{ secrets.CLIENT_ID }} \
+          --jwtkeyfile server.key \
+          --username ${{ secrets.SF_USERNAME }} \
+          --instanceurl https://login.salesforce.com
+
+      - name: 'Generate metadata delta pull request'
+        run: |
+          mkdir -p .temp
+          sfdx sgd:source:delta \
+            --from HEAD~1 \
+            --to HEAD \
+            --output .temp
 
       - name: 'Déployer les métadonnées sur la branch main'
         if: github.ref == 'refs/heads/main'
-        run:  # A faire déployer le code venant du fichier package.xml généré précédemment 
+        run: |
+          sfdx force:mdapi:deploy \
+            -d .temp \
+            --targetusername ${{ secrets.SF_USERNAME }} \
+            --testlevel RunLocalTests
