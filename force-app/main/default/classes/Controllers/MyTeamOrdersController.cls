@@ -8,6 +8,10 @@ public without sharing class MyTeamOrdersController {
      */
     @AuraEnabled
     public static Decimal getSumOrdersByAccount(Id accountId) {
+        // Vérifier que l'ID du compte est valide
+        if (accountId == null) {
+            throw new AuraHandledException('L\'ID du compte est invalide.');
+        }
 
             // Requête pour récupérer la somme des commandes activées
             AggregateResult groupedResults = [
