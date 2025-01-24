@@ -18,7 +18,7 @@ public without sharing class OrderHelper {
             Decimal calculatedNetAmount = order.TotalAmount - shipmentCost;
 
             // Éviter les mises à jour inutiles
-            if (order.NetAmount__c == null || order.NetAmount__c != calculatedNetAmount) {
+            if (order.NetAmount__c == null || order.NetAmount__c != calculatedNetAmount) { //Si NetAmount__c est null ou a une valeur différente de celle qui devrait être calculée. Si l'une de ces deux conditions est vraie, cela signifie que NetAmount__c doit être mis à jour avec la nouvelle valeur calculée (calculatedNetAmount).
                 order.NetAmount__c = calculatedNetAmount;
 
                 // Log sécurisé
