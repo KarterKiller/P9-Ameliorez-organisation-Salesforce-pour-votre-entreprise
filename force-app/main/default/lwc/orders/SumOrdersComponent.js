@@ -1,7 +1,7 @@
 import { LightningElement, api } from 'lwc';
 import getSumOrdersByAccount from '@salesforce/apex/MyTeamOrdersController.getSumOrdersByAccount';
 
-export default class Orders extends LightningElement {
+export default class SumOrdersComponent extends LightningElement {
     @api recordId; // ID du compte transmis au composant
     sumOrdersOfCurrentAccount = 0; // Montant total des commandes
     error; // Gestion des erreurs
