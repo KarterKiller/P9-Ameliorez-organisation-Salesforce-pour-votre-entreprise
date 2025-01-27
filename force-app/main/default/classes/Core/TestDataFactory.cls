@@ -197,5 +197,17 @@ public static List<Order> createOrdersWithItems(Id accountId, Id pricebookId, Id
     return orders;
 }
 
+public static void createMultipleOrderItems(Id orderId, Id pricebookEntryId, List<Decimal> unitPrices, List<Integer> quantities) {
+    List<OrderItem> orderItems = new List<OrderItem>();
+    for (Integer i = 0; i < unitPrices.size(); i++) {
+        orderItems.add(new OrderItem(
+            OrderId = orderId,
+            PricebookEntryId = pricebookEntryId,
+            Quantity = quantities[i],
+            UnitPrice = unitPrices[i]
+        ));
+    }
+    insert orderItems;
 }
 
+}
