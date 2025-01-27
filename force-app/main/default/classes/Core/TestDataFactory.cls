@@ -142,5 +142,60 @@ public class TestDataFactory {
         return oi;
     }
 
+/**
+ * Crée plusieurs commandes avec des lignes de commande associées.
+ * @param accountId L'ID du compte associé.
+ * @param pricebookId L'ID du Price Book associé.
+ * @param pricebookEntryId L'ID du Price Book Entry associé.
+ * @param numberOfOrders Le nombre de commandes à créer.
+ * @param shipmentCost Le coût d'expédition pour chaque commande.
+ * @return La liste des commandes créées.
+ */
+public static List<Order> createOrdersWithItems(Id accountId, Id pricebookId, Id pricebookEntryId, Integer numberOfOrders, Decimal shipmentCost) {
+    if (accountId == null || pricebookId == null || pricebookEntryId == null) {
+        throw new IllegalArgumentException('Account ID, Pricebook ID et PricebookEntry ID sont requis.');
+    }
+    if (numberOfOrders == null || numberOfOrders <= 0) {
+        throw new IllegalArgumentException('Le nombre de commandes doit être supérieur à zéro.');
+    }
+
+    List<Order> orders = new List<Order>();
+    List<OrderItem> orderItems = new List<OrderItem>();
+
+    for (Integer i = 0; i < numberOfOrders; i++) {
+        Decimal orderAmount = 100 + (i * 10); // Montants variés : 100, 110, 120, ...
+
+        // Créer une commande
+        Order order = new Order(
+            AccountId = accountId,
+            Pricebook2Id = pricebookId,
+            Status = 'Draft',
+            EffectiveDate = Date.today(),
+            ShipmentCost__c = shipmentCost
+        );
+        orders.add(order);
+    }
+
+    // Insérer les commandes
+    insert orders;
+
+    // Créer les lignes de commande pour chaque commande
+    for (Integer i = 0; i < orders.size(); i++) {
+        OrderItem orderItem = new OrderItem(
+            OrderId = orders[i].Id,
+            PricebookEntryId = pricebookEntryId,
+            Quantity = 1, // Quantité fixée à 1 pour simplifier
+            UnitPrice = 100 + (i * 10) // Montant variable par commande
+        );
+        orderItems.add(orderItem);
+    }
+
+    // Insérer les lignes de commande
+    insert orderItems;
+
+    System.debug(numberOfOrders + ' commandes et ' + orderItems.size() + ' lignes de commande créées.');
+    return orders;
+}
+
 }
 
