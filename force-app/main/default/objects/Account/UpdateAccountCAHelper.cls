@@ -1,9 +1,9 @@
 public without sharing class UpdateAccountCAHelper {
     public static void updateAccountChiffreDAffaire(List<Order> newOrders, List<Order> oldOrders, Boolean isInsert, Boolean isUpdate, Boolean isDelete) {
-        Map<Id, Decimal> accountTotals = new Map<Id, Decimal>();
+        Map<Id, Decimal> accountTotals = new Map<Id, Decimal>(); // Initialisation d'une Map pour stocker les totaux
 
         // Ajouter ou mettre à jour les montants des commandes activées
-        if (isInsert || isUpdate) {
+        if (isInsert || isUpdate) { // Ajout des montants des nouvelles commandes activées
             for (Order order : newOrders) {
                 if (order.AccountId != null && order.Status == 'Activated' && order.NetAmount__c != null) {
                     if (!accountTotals.containsKey(order.AccountId)) {
