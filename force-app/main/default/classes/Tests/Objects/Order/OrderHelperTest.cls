@@ -3,7 +3,7 @@ public class OrderHelperTest {
 
     @isTest
     static void testCalculateNetAmount() {
-        System.debug('=== Début du test pour OrderHelper.calculateNetAmount ===');
+        //System.debug('=== Début du test pour OrderHelper.calculateNetAmount ===');
 
         // Créer un compte via TestDataFactory
         Account testAccount = TestDataFactory.createAccount('Test Account');
@@ -39,7 +39,7 @@ public class OrderHelperTest {
         System.assertEquals(expectedNetAmount, testOrder.NetAmount__c,
             'NetAmount__c devrait être égal à TotalAmount - ShipmentCost__c.');
 
-        System.debug('=== Fin du test pour OrderHelper.calculateNetAmount ===');
+        //System.debug('=== Fin du test pour OrderHelper.calculateNetAmount ===');
     
 }
 

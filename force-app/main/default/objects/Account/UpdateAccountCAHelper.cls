@@ -35,13 +35,13 @@ public without sharing class UpdateAccountCAHelper {
                 Decimal currentTotal = account.Chiffre_d_affaire__c != null ? account.Chiffre_d_affaire__c : 0;
                 Decimal newTotal = currentTotal + accountTotals.get(account.Id);
                 account.Chiffre_d_affaire__c = newTotal;
-                System.debug('Compte mis à jour : ' + account.Id + ' avec Chiffre_d_affaire__c : ' + newTotal);
+                //System.debug('Compte mis à jour : ' + account.Id + ' avec Chiffre_d_affaire__c : ' + newTotal);
             }
 
             try {
                 update accountsToUpdate;
             } catch (DmlException e) {
-                System.debug('Erreur lors de la mise à jour des comptes : ' + e.getMessage());
+                //System.debug('Erreur lors de la mise à jour des comptes : ' + e.getMessage());
                 throw e; // Relancer l'erreur pour un traitement éventuel par la plateforme
             }
         }

@@ -23,9 +23,9 @@ public without sharing class OrderHelper {
 
                 // Log sécurisé
                 if (order.Id != null) {
-                    System.debug('NetAmount__c mis à jour pour Order ID : ' + order.Id);
+                    //System.debug('NetAmount__c mis à jour pour Order ID : ' + order.Id);
                 } else {
-                    System.debug('NetAmount__c mis à jour pour une nouvelle commande (ID non défini).');
+                    //System.debug('NetAmount__c mis à jour pour une nouvelle commande (ID non défini).');
                 }
             }
         } else {
@@ -34,9 +34,9 @@ public without sharing class OrderHelper {
 
                 // Log sécurisé
                 if (order.Id != null) {
-                    System.debug('NetAmount__c mis à 0 pour Order ID : ' + order.Id + ' car TotalAmount est null.');
+                    //System.debug('NetAmount__c mis à 0 pour Order ID : ' + order.Id + ' car TotalAmount est null.');
                 } else {
-                    System.debug('NetAmount__c mis à 0 pour une nouvelle commande (ID non défini) car TotalAmount est null.');
+                    //System.debug('NetAmount__c mis à 0 pour une nouvelle commande (ID non défini) car TotalAmount est null.');
                 }
             }
         }

@@ -3,7 +3,7 @@ private class UpdateAccountCATriggerTest {
 
     @isTest
     static void testInsertOrder() {
-        System.debug('=== TEST : Insertion de commande ===');
+        //System.debug('=== TEST : Insertion de commande ===');
         Account testAccount = TestDataFactory.createAccount('Test Account');
         Product2 testProduct = TestDataFactory.createProduct('Test Product', true);
         PricebookEntry testPricebookEntry = TestDataFactory.createStandardPricebookEntry(testProduct.Id, 150.00);
@@ -25,7 +25,7 @@ private class UpdateAccountCATriggerTest {
 
     @isTest
     static void testUpdateOrder() {
-        System.debug('=== TEST : Mise à jour de commande ===');
+        //System.debug('=== TEST : Mise à jour de commande ===');
         Account testAccount = TestDataFactory.createAccount('Test Account');
         Product2 testProduct = TestDataFactory.createProduct('Test Product', true);
         PricebookEntry testPricebookEntry = TestDataFactory.createStandardPricebookEntry(testProduct.Id, 150.00);
@@ -50,7 +50,7 @@ private class UpdateAccountCATriggerTest {
 
     @isTest
     static void testDeleteOrder() {
-        System.debug('=== TEST : Suppression de commande ===');
+        //System.debug('=== TEST : Suppression de commande ===');
         Account testAccount = TestDataFactory.createAccount('Test Account');
         Product2 testProduct = TestDataFactory.createProduct('Test Product', true);
         PricebookEntry testPricebookEntry = TestDataFactory.createStandardPricebookEntry(testProduct.Id, 150.00);

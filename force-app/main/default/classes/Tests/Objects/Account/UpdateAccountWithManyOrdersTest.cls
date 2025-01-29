@@ -3,7 +3,7 @@ public class UpdateAccountWithManyOrdersTest {
 
     @isTest
 static void testUpdateOrderNetAmountWithShipmentCost() {
-    System.debug('DÉBUT DU TEST : Mise à jour du champ NetAmount__c avec ShipmentCost__c.');
+    //System.debug('DÉBUT DU TEST : Mise à jour du champ NetAmount__c avec ShipmentCost__c.');
 
     Test.startTest();
 
@@ -44,7 +44,7 @@ static void testUpdateOrderNetAmountWithShipmentCost() {
             'Le statut de la commande doit être "Activated".');
     }
 
-    System.debug('FIN DU TEST : NetAmount__c mis à jour correctement.');
+    //System.debug('FIN DU TEST : NetAmount__c mis à jour correctement.');
 
     Test.stopTest();
 }

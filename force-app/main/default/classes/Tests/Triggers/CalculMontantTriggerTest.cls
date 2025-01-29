@@ -3,7 +3,7 @@ private class CalculMontantTriggerTest {
 
     @isTest
     static void testCalculMontantInsert() {
-        System.debug('=== DÉBUT DU TEST CalculMontantTrigger pour insert ===');
+        //System.debug('=== DÉBUT DU TEST CalculMontantTrigger pour insert ===');
 
         // Crée un compte et les données nécessaires via TestDataFactory
         Account testAccount = TestDataFactory.createAccount('Test Account');
@@ -26,12 +26,12 @@ private class CalculMontantTriggerTest {
         System.assertEquals(150.00, reloadedOrder.NetAmount__c, 'NetAmount__c devrait être TotalAmount - ShipmentCost.');
         System.assertEquals('Activated', reloadedOrder.Status, 'Le statut de la commande devrait être Activated.');
 
-        System.debug('=== FIN DU TEST CalculMontantTrigger pour insert ===');
+        //System.debug('=== FIN DU TEST CalculMontantTrigger pour insert ===');
     }
 
     @isTest
     static void testCalculMontantUpdate() {
-        System.debug('=== DÉBUT DU TEST CalculMontantTrigger pour update ===');
+        //System.debug('=== DÉBUT DU TEST CalculMontantTrigger pour update ===');
 
         // Crée un compte et les données nécessaires via TestDataFactory
         Account testAccount = TestDataFactory.createAccount('Test Account');
@@ -57,12 +57,12 @@ private class CalculMontantTriggerTest {
         System.assertEquals(200.00, updatedOrder.TotalAmount, 'TotalAmount ne doit pas changer après la mise à jour de ShipmentCost.');
         System.assertEquals(50.00, updatedOrder.NetAmount__c, 'NetAmount__c devrait être recalculé après la mise à jour de ShipmentCost.');
 
-        System.debug('=== FIN DU TEST CalculMontantTrigger pour update ===');
+        //System.debug('=== FIN DU TEST CalculMontantTrigger pour update ===');
     }
 
     @isTest
     static void testCalculMontantWithNullShipmentCost() {
-        System.debug('=== DÉBUT DU TEST CalculMontantTrigger avec ShipmentCost null ===');
+        //System.debug('=== DÉBUT DU TEST CalculMontantTrigger avec ShipmentCost null ===');
 
         // Crée un compte et les données nécessaires via TestDataFactory
         Account testAccount = TestDataFactory.createAccount('Test Account');
@@ -84,12 +84,12 @@ private class CalculMontantTriggerTest {
         System.assertEquals(100.00, reloadedOrder.TotalAmount, 'TotalAmount devrait être calculé à partir des lignes de commande.');
         System.assertEquals(100.00, reloadedOrder.NetAmount__c, 'NetAmount__c devrait être égal à TotalAmount lorsque ShipmentCost est null.');
 
-        System.debug('=== FIN DU TEST CalculMontantTrigger avec ShipmentCost null ===');
+        //System.debug('=== FIN DU TEST CalculMontantTrigger avec ShipmentCost null ===');
     }
 
     @isTest
     static void testCalculMontantWithMultipleOrderItems() {
-        System.debug('=== DÉBUT DU TEST CalculMontantTrigger avec plusieurs lignes de commande ===');
+        //System.debug('=== DÉBUT DU TEST CalculMontantTrigger avec plusieurs lignes de commande ===');
 
         // Crée un compte et les données nécessaires via TestDataFactory
         Account testAccount = TestDataFactory.createAccount('Test Account');
@@ -114,6 +114,6 @@ private class CalculMontantTriggerTest {
         System.assertEquals((100.00 + 300.00 + 600.00) - 20.00, reloadedOrder.NetAmount__c, 
             'NetAmount__c devrait être TotalAmount - ShipmentCost.');
 
-        System.debug('=== FIN DU TEST CalculMontantTrigger avec plusieurs lignes de commande ===');
+        //System.debug('=== FIN DU TEST CalculMontantTrigger avec plusieurs lignes de commande ===');
     }
 }

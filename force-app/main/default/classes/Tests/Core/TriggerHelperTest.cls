@@ -3,7 +3,7 @@ private class TriggerHelperTest {
 
     @isTest
     static void testTriggerHelperFlagBehavior() {
-        System.debug('=== DÉBUT DU TEST TriggerHelper ===');
+        //('=== DÉBUT DU TEST TriggerHelper ===');
 
         // Vérifie que le flag est initialement faux
         System.assertEquals(false, TriggerHelper.isTriggerExecuted, 
@@ -19,12 +19,12 @@ private class TriggerHelperTest {
         System.assertEquals(false, TriggerHelper.isTriggerExecuted, 
             'Le flag isTriggerExecuted devrait être false après réinitialisation.');
 
-        System.debug('=== FIN DU TEST TriggerHelper ===');
+        //System.debug('=== FIN DU TEST TriggerHelper ===');
     }
 
     @isTest
     static void testTriggerBehaviorWithFlag() {
-        System.debug('=== TEST : Comportement de déclencheur avec TriggerHelper ===');
+        //System.debug('=== TEST : Comportement de déclencheur avec TriggerHelper ===');
 
         // Étape 1 : Crée un compte
         Account testAccount = new Account(Name = 'Test Account');
@@ -47,6 +47,6 @@ private class TriggerHelperTest {
         System.assertEquals(true, TriggerHelper.isTriggerExecuted, 
             'Le flag devrait rester true jusqu’à la fin de la transaction.');
 
-        System.debug('=== FIN DU TEST : Comportement de déclencheur avec TriggerHelper ===');
+        //System.debug('=== FIN DU TEST : Comportement de déclencheur avec TriggerHelper ===');
     }
 }

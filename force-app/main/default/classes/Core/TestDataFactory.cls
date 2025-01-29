@@ -11,7 +11,7 @@ public class TestDataFactory {
             IsActive = true
         );
         insert standardPricebook;
-        System.debug('Standard Test Pricebook créé avec ID : ' + standardPricebook.Id);
+        //System.debug('Standard Test Pricebook créé avec ID : ' + standardPricebook.Id);
         return standardPricebook;
     }
 
@@ -30,7 +30,7 @@ public class TestDataFactory {
             IsActive = true
         );
         insert standardPbe;
-        System.debug('Entrée dans le Standard Pricebook créée avec ID : ' + standardPbe.Id);
+        //System.debug('Entrée dans le Standard Pricebook créée avec ID : ' + standardPbe.Id);
         return standardPbe;
     }
 
@@ -46,7 +46,7 @@ public class TestDataFactory {
         }
         Product2 prod = new Product2(Name = name, IsActive = isActive);
         insert prod;
-        System.debug('Produit créé avec ID : ' + prod.Id);
+        //System.debug('Produit créé avec ID : ' + prod.Id);
         return prod;
     }
 
@@ -72,7 +72,7 @@ public class TestDataFactory {
             IsActive = true
         );
         insert pbe;
-        System.debug('Price Book Entry créé avec ID : ' + pbe.Id + ', UseStandardPrice : ' + useStandardPrice);
+        //System.debug('Price Book Entry créé avec ID : ' + pbe.Id + ', UseStandardPrice : ' + useStandardPrice);
         return pbe;
     }
 
@@ -87,7 +87,7 @@ public class TestDataFactory {
         }
         Account acc = new Account(Name = name);
         insert acc;
-        System.debug('Compte créé avec ID : ' + acc.Id);
+        //System.debug('Compte créé avec ID : ' + acc.Id);
         return acc;
     }
 
@@ -112,7 +112,7 @@ public class TestDataFactory {
             EffectiveDate = Date.today()
         );
         insert ord;
-        System.debug('Commande créée avec ID : ' + ord.Id);
+        //System.debug('Commande créée avec ID : ' + ord.Id);
         return ord;
     }
 
@@ -138,7 +138,7 @@ public class TestDataFactory {
             UnitPrice = unitPrice
         );
         insert oi;
-        System.debug('OrderItem créé avec ID : ' + oi.Id);
+        //System.debug('OrderItem créé avec ID : ' + oi.Id);
         return oi;
     }
 
@@ -193,7 +193,7 @@ public static List<Order> createOrdersWithItems(Id accountId, Id pricebookId, Id
     // Insérer les lignes de commande
     insert orderItems;
 
-    System.debug(numberOfOrders + ' commandes et ' + orderItems.size() + ' lignes de commande créées.');
+    //System.debug(numberOfOrders + ' commandes et ' + orderItems.size() + ' lignes de commande créées.');
     return orders;
 }
 
