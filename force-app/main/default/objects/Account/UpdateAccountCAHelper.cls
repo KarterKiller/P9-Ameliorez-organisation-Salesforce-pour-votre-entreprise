@@ -1,4 +1,4 @@
-public without sharing class UpdateAccountCAHelper {
+public with sharing class UpdateAccountCAHelper {
     public static void updateAccountChiffreDAffaire(List<Order> newOrders, List<Order> oldOrders, Boolean isInsert, Boolean isUpdate, Boolean isDelete) {
         Map<Id, Decimal> accountTotals = new Map<Id, Decimal>(); // Initialisation d'une Map pour stocker les totaux
 

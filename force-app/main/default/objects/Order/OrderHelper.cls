@@ -1,4 +1,4 @@
-public without sharing class OrderHelper {
+public with sharing class OrderHelper {
     /**
      * Méthode statique pour calculer NetAmount__c.
      * @param order L'objet Order à traiter.
