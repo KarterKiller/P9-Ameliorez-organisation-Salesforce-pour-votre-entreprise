@@ -1,4 +1,4 @@
-public without sharing class MyTeamOrdersController {
+public with sharing class MyTeamOrdersController {
 
     /**
      * Méthode pour récupérer la somme des montants des commandes activées pour un compte donné.
