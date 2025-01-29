@@ -45,10 +45,10 @@ jobs:
       - name: 'Authentification Salesforce'
         run: |
           sfdx force:auth:jwt:grant \
-          --clientid ${{ secrets.CLIENT_ID }} \
-          --jwtkeyfile server.key \
+          --client-id ${{ secrets.CLIENT_ID }} \
+          --jwt-key-file server.key \
           --username ${{ secrets.SF_USERNAME }} \
-          --instanceurl https://login.salesforce.com
+          --instance-url https://login.salesforce.com
 
       - name: 'Generate metadata delta pull request'
         run: |
