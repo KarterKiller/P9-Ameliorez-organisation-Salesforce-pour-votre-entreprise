@@ -34,9 +34,10 @@ export default class SumOrdersComponent extends LightningElement {
                 }
             })
             .catch((error) => {
-                console.error('Erreur Apex :', error);
+                console.error('Erreur Apex :',  JSON.stringify(error));
                 this.error = 'Erreur lors de la récupération des données : ' +
-                    (error.body && error.body.message ? error.body.message : error.message || 'Erreur inconnue');
+                    (error.body && error.body.message ? error.body.message : 
+                    error.message || JSON.stringify(error) || 'Erreur inconnue');
             })
             .finally(() => {
                 // Assurer que la variable est bien définie
