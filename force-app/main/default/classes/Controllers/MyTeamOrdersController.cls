@@ -6,7 +6,7 @@ public with sharing class MyTeamOrdersController {
      * @return La somme des montants (Decimal) ou 0 si aucune commande activée n'est trouvée.
      * @throws AuraHandledException si l'ID du compte est null ou invalide.
      */
-    @AuraEnabled
+    @AuraEnabled(cacheable=true)
     public static Decimal getSumOrdersByAccount(Id accountId) {
         // Vérifier que l'ID du compte est valide
         if (accountId == null) {

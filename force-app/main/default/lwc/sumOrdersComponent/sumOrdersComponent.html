@@ -1,6 +1,6 @@
-<template>
-    <!-- Afficher le total si le montant est supérieur à 0 -->
-    <template if:true={sumOrdersOfCurrentAccount}>
+<template> 
+    <!-- Afficher le total même s'il est égal à 0 -->
+    <template if:true={displaySum}>
         <div class="slds-box slds-theme_success">
             <h1>Total des Commandes : {sumOrdersOfCurrentAccount} €</h1>
         </div>
