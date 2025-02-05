@@ -7,14 +7,14 @@ jest.mock('@salesforce/apex/MyTeamOrdersController.getSumOrdersByAccount', () =>
     default: jest.fn()
 }), { virtual: true });
 
-// Fonction pour s'assurer que les Promises sont bien résolues avant de valider les assertions
+// Fonction pour s'assurer que les Promises sont bien résolues avant de valider les assertions.
 function flushPromises() {
     return new Promise((resolve) => setTimeout(resolve, 0));
 }
 
 describe('c-sum-orders-component', () => {
     afterEach(() => {
-        // Nettoie le DOM après chaque test
+        // Nettoie le DOM après chaque test.
         while (document.body.firstChild) {
             document.body.removeChild(document.body.firstChild);
         }
@@ -27,7 +27,7 @@ describe('c-sum-orders-component', () => {
         });
         document.body.appendChild(element);
 
-        // Vérifier que le composant est bien dans le DOM
+        // Vérifier que le composant est bien dans le DOM.
         expect(element).toBeTruthy();
     });
 
@@ -37,15 +37,14 @@ describe('c-sum-orders-component', () => {
         const element = createElement('c-sum-orders-component', {
             is: SumOrdersComponent
         });
-        element.recordId = '001XXXXXXX'; // Simule un ID de compte
+        element.recordId = '001XXXXXXX'; // Simule un ID de compte.
         document.body.appendChild(element);
     
-        // ✅ Attendre que la promesse soit résolue
+        // ✅ Attendre que la promesse soit résolue.
         await flushPromises();
-        await Promise.resolve(); // Force une mise à jour supplémentaire
+        await Promise.resolve(); // Force une mise à jour supplémentaire.
     
-    
-        // ✅ Vérifier que la somme des commandes a bien été mise à jour
+        // ✅ Vérifier que la somme des commandes a bien été mise à jour.
         expect(element.sumOrdersOfCurrentAccount).toBe(500);
         expect(element.error).toBeNull();
     });
@@ -75,7 +74,7 @@ describe('c-sum-orders-component', () => {
         document.body.appendChild(element);
         
         await flushPromises();
-        await new Promise(resolve => setTimeout(resolve, 0));
+        await new Promise((resolve) => setTimeout(resolve, 0));
 
         expect(element.sumOrdersOfCurrentAccount).toBe(0);
         
@@ -83,16 +82,25 @@ describe('c-sum-orders-component', () => {
         if (element.error) {
             expect(element.error).toContain('Erreur lors de la récupération des données');
         }
-        
+    });
+
+    test('🔄 Vérifier que sumOrdersOfCurrentAccount est défini à 0 si undefined', async () => {
+        // Mock de la méthode Apex pour retourner undefined.
+        getSumOrdersByAccount.mockResolvedValue(undefined);
+    
+        const element = createElement('c-sum-orders-component', {
+            is: SumOrdersComponent
+        });
+        element.recordId = '001XXXXXXX';
+        document.body.appendChild(element);
+    
+        // Attendre que toutes les promesses soient résolues.
+        await flushPromises();
+    
+        // Forcer un cycle de rendu supplémentaire.
+        await new Promise((resolve) => setTimeout(resolve, 0));
+    
+        // Vérifier que sumOrdersOfCurrentAccount est bien défini à 0.
+        expect(element.sumOrdersOfCurrentAccount).toBe(0);
     });
 });
-
-    
-
-
-
-
-
-
-
-
