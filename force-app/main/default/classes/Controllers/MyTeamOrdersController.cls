@@ -1,7 +1,7 @@
 public with sharing class MyTeamOrdersController {
 
     /**
-     * Méthode pour récupérer la somme des montants des commandes activées pour un compte donné.
+     * Méthode pour récupérer la somme des montants des commandes activées pour un compte donné et les afficher sur le composant SumOrdersComponent.
      * @param accountId L'ID du compte pour lequel calculer le total des commandes activées.
      * @return La somme des montants (Decimal) ou 0 si aucune commande activée n'est trouvée.
      * @throws AuraHandledException si l'ID du compte est null ou invalide.
@@ -14,7 +14,7 @@ public with sharing class MyTeamOrdersController {
         }
 
             // Requête pour récupérer la somme des commandes activées
-            AggregateResult groupedResults = [
+            AggregateResult groupedResults = [ // La requête est une requête sélectionnée (SELECT) qui récupère des données d'une seule ligne (SUM) et qui est ensuite agrégée par la clé (GROUP BY).
                 SELECT SUM(TotalAmount) total 
                 FROM Order 
                 WHERE Status = 'Activated' AND AccountId = :accountId

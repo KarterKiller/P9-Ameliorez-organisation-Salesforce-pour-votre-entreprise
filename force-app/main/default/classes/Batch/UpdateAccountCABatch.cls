@@ -1,6 +1,6 @@
 global class UpdateAccountCABatch implements Database.Batchable<SObject>, Database.Stateful {
 
-    global Database.QueryLocator start(Database.BatchableContext BC) {
+    global Database.QueryLocator start(Database.BatchableContext BC) { // Début du traitement par lot. gobal rend la classe accessible. 
         // Récupérer tous les comptes actifs
         return Database.getQueryLocator('SELECT Id FROM Account');
     }

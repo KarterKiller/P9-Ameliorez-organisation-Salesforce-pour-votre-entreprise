@@ -11,12 +11,12 @@ export default class SumOrdersComponent extends LightningElement {
         this.fetchSumOrders(); // pour récupérer les données dès que le composant est chargé
     }
 
-    // Méthode pour appeler la méthode Apex
-    fetchSumOrders() {
+    // Méthode pour appeler la méthode Apex pour récupérer la somme des commandes
+    fetchSumOrders() { // méthode appelée lorsque le composant est chargé
         // Vérifier si recordId est défini avant d’appeler Apex
         if (!this.recordId) {
             this.error = 'Erreur : Aucun compte sélectionné.';
-            this.sumOrdersOfCurrentAccount = 0;
+            this.sumOrdersOfCurrentAccount = 0; // Initialiser la variable à 0 si recordId n'est pas défini
             return;
         }
     

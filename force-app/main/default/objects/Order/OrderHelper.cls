@@ -11,15 +11,15 @@ public with sharing class OrderHelper {
         }
 
         // Initialiser ShipmentCost__c à 0 s'il est null
-        Decimal shipmentCost = order.ShipmentCost__c != null ? order.ShipmentCost__c : 0;
+        Decimal shipmentCost = order.ShipmentCost__c != null ? order.ShipmentCost__c : 0; // Si ShipmentCost__c est null, initialiser à 0.
 
-        // Vérifier que TotalAmount est défini (calculé par Salesforce)
+        // Vérifier que TotalAmount est défini (calculé automatiquement par Salesforce)
         if (order.TotalAmount != null) {
             Decimal calculatedNetAmount = order.TotalAmount - shipmentCost;
 
             // Éviter les mises à jour inutiles
             if (order.NetAmount__c == null || order.NetAmount__c != calculatedNetAmount) { //Si NetAmount__c est null ou a une valeur différente de celle qui devrait être calculée. Si l'une de ces deux conditions est vraie, cela signifie que NetAmount__c doit être mis à jour avec la nouvelle valeur calculée (calculatedNetAmount).
-                order.NetAmount__c = calculatedNetAmount;
+                order.NetAmount__c = calculatedNetAmount; // Mise à jour de NetAmount__c en faisant des économies de ressources. 
 
                 // Log sécurisé
                 if (order.Id != null) {
@@ -29,8 +29,8 @@ public with sharing class OrderHelper {
                 }
             }
         } else {
-            if (order.NetAmount__c != 0) {
-                order.NetAmount__c = 0;
+            if (order.NetAmount__c != 0) { // Si NetAmount__c est défini et vaut 0, cela signifie que TotalAmount n'est pas défini (calculé automatiquement par Salesforce).
+                order.NetAmount__c = 0; // Mise à 0 de NetAmount__c
 
                 // Log sécurisé
                 if (order.Id != null) {
